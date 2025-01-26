@@ -11,7 +11,8 @@ if (isset($_POST['submitBtn'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
 
-  $conn->query("CALL call_customer('$name', '$phone','$email','$password')");
+  // Calling the stored procedure for 'suppliers' table
+  $conn->query("CALL call_supplier('$name', '$phone', '$email', '$password')");
 }
 
 ?>
@@ -28,7 +29,7 @@ require_once('../templat/sidebar.php')
       <input type="text" class="form-control border border-1 border-dark" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name" name="name">
     </div>
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Phone name</label>
+      <label for="exampleInputEmail1" class="form-label">Phone</label>
       <input type="tel" class="form-control border border-1 border-dark" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="phone" name="phone">
     </div>
     <div class="mb-3">

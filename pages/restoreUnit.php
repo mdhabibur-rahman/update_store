@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 function restoreData($id, $conn)
 {
   $restoreQuery = "INSERT INTO units (id, unit_name) 
-                     SELECT id, unit_name FROM unit_restore WHERE id = ?";
+  SELECT id, unit_name FROM unit_restore WHERE id = ?";
   if ($stmt = $conn->prepare($restoreQuery)) {
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {

@@ -6,7 +6,7 @@ $database = "astha";
 $conn = new mysqli($servername, $username, $password, $database);
 
 // Create restore table if it does not exist
-$restoreTableQuery = "CREATE TABLE IF NOT EXISTS customer_restore (
+$restoreTableQuery = "CREATE TABLE IF NOT EXISTS supplier_restore (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     phone VARCHAR(50) NOT NULL,
@@ -19,28 +19,33 @@ $conn->query($restoreTableQuery);
 // Function to store deleted data in restore table
 function backupDataBeforeDelete($id, $conn)
 {
-    // Backup customer data, including the password field
-    $backupQuery = "INSERT INTO customer_restore (id, name, phone, email, password) 
-    SELECT id, name, phone, email, password FROM customers WHERE id = $id";
+    // Backup supplier data, including the password field
+    $backupQuery = "INSERT INTO supplier_restore (id, name, phone, email, password) 
+    SELECT id, name, phone, email, password FROM suppliers WHERE id = $id";
     $conn->query($backupQuery);
 }
 
-// Delete customer
+// Delete supplier
+// Delete supplier
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
 
     // Backup data before delete
     backupDataBeforeDelete($delete_id, $conn);
 
-    // Delete the customer from the main table
-    $deleteQuery = "DELETE FROM customers WHERE id = $delete_id";
-    $conn->query($deleteQuery);
-
-    header("Location: viewCustomer.php"); // Redirect to refresh page
+    // Delete the supplier from the main table
+    $deleteQuery = "DELETE FROM suppliers WHERE id = $delete_id";
+    if ($conn->query($deleteQuery) === TRUE) {
+        // Redirect to supplier view page
+        header("Location: viewSuppliers.php");
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
     exit();
 }
 
-// Update customer
+
+// Update supplier
 if (isset($_POST['edit_id'])) {
     $edit_id = $_POST['edit_id'];
     $name = $_POST['name'];
@@ -49,21 +54,21 @@ if (isset($_POST['edit_id'])) {
 
     // Check if all fields are filled
     if (!empty($name) && !empty($phone) && !empty($email)) {
-        $updateQuery = "UPDATE customers SET name='$name', phone='$phone', email='$email' WHERE id=$edit_id";
+        $updateQuery = "UPDATE suppliers SET name='$name', phone='$phone', email='$email' WHERE id=$edit_id";
         if ($conn->query($updateQuery) === TRUE) {
-            echo "<script>alert('Customer updated successfully!');</script>";
-            header("Location: viewCustomer.php"); // Redirect to refresh page
+            echo "<script>alert('Supplier updated successfully!');</script>";
+            header("Location: viewSuppliers.php"); // Redirect to refresh page
             exit();
         } else {
-            echo "<script>alert('Error updating customer.');</script>";
+            echo "<script>alert('Error updating supplier.');</script>";
         }
     } else {
         echo "<script>alert('Please fill in all fields.');</script>";
     }
 }
 
-// Fetch all customers
-$productList = $conn->query('SELECT * FROM customers');
+// Fetch all suppliers
+$productList = $conn->query('SELECT * FROM suppliers');
 ?>
 
 <?php require_once('../templat/header.php'); ?>
@@ -189,7 +194,7 @@ if ($productList) {
                 <i class="fa fa-edit"></i>
             </a>
             <!-- Delete Link with FontAwesome Icon (without text) -->
-            <a href="viewCustomer.php?delete_id=' . $row['id'] . '" class="pos_item_btn" id="item_delete" name="delBtn" style="text-decoration:none; color:black">
+            <a href="viewSuppliers.php?delete_id=' . $row['id'] . '" class="pos_item_btn" id="item_delete" name="delBtn" style="text-decoration:none; color:black">
                 <i class="fa fa-trash"></i>
             </a>
         </td>';
@@ -199,14 +204,14 @@ if ($productList) {
     echo "</table>";
     echo "</form>";
 } else {
-    echo "Error fetching customer data.";
+    echo "Error fetching supplier data.";
 }
 ?>
 
 <!-- Small Edit Popup -->
 <div id="editPopup" class="popup">
     <button class="close-btn" id="closePopup">&times;</button>
-    <h3>Edit Customer</h3>
+    <h3>Edit Supplier</h3>
     <form id="editForm" method="POST">
         <input type="hidden" name="edit_id" id="edit_id">
         <label for="name">Name:</label>

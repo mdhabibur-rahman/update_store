@@ -14,9 +14,9 @@ $conn = new mysqli($servername, $username, $password, $database);
 function backupDataBeforeDelete($id, $conn)
 {
   // Prepare the backup query string
-  $backupQuery = "INSERT INTO customers (id, name, phone, email, password) 
+  $backupQuery = "INSERT INTO supplier_restore (id, name, phone, email, password) 
                     SELECT id, name, phone, email, password 
-                    FROM customer_restore WHERE id = ?";
+                    FROM suppliers WHERE id = ?";
 
   // Prepare the statement
   if ($stmt = $conn->prepare($backupQuery)) {
@@ -33,19 +33,19 @@ function backupDataBeforeDelete($id, $conn)
   }
 }
 
-// Function to restore data to customers table and delete from customer_restore
+// Function to restore data to suppliers table and delete from supplier_restore
 function restoreData($id, $conn)
 {
-  // Insert data into customers table
-  $restoreQuery = "INSERT INTO customers (id, name, phone, email, password) 
+  // Insert data into suppliers table
+  $restoreQuery = "INSERT INTO suppliers (id, name, phone, email, password) 
                      SELECT id, name, phone, email, password 
-                     FROM customer_restore WHERE id = ?";
+                     FROM supplier_restore WHERE id = ?";
 
   if ($stmt = $conn->prepare($restoreQuery)) {
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
-      // Delete data from customer_restore table
-      $deleteQuery = "DELETE FROM customer_restore WHERE id = ?";
+      // Delete data from supplier_restore table
+      $deleteQuery = "DELETE FROM supplier_restore WHERE id = ?";
       if ($stmt = $conn->prepare($deleteQuery)) {
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -61,11 +61,11 @@ function restoreData($id, $conn)
   }
 }
 
-// Function to permanently delete data from customer_restore
+// Function to permanently delete data from supplier_restore
 function permanentDelete($id, $conn)
 {
-  // Directly delete from customer_restore table without backup
-  $deleteQuery = "DELETE FROM customer_restore WHERE id = ?";
+  // Directly delete from supplier_restore table without backup
+  $deleteQuery = "DELETE FROM supplier_restore WHERE id = ?";
 
   if ($stmt = $conn->prepare($deleteQuery)) {
     $stmt->bind_param("i", $id);
@@ -82,8 +82,8 @@ function permanentDelete($id, $conn)
 // Check if restore or delete request exists
 if (isset($_GET['restore_id'])) {
   $restore_id = (int)$_GET['restore_id']; // Ensure ID is cast to integer for safety
-  restoreData($restore_id, $conn); // Restore the data and remove from customer_restore
-  header("Location: cRestore.php"); // Redirect after restore
+  restoreData($restore_id, $conn); // Restore the data and remove from supplier_restore
+  header("Location: restoreSup.php"); // Redirect after restore
   exit();
 }
 
@@ -91,12 +91,12 @@ if (isset($_GET['delete_id'])) {
   $delete_id = (int)$_GET['delete_id']; // Ensure ID is cast to integer for safety
   backupDataBeforeDelete($delete_id, $conn); // Backup data before delete
   permanentDelete($delete_id, $conn); // Permanently delete the data
-  header("Location: cRestore.php"); // Redirect after permanent delete
+  header("Location: restoreSup.php"); // Redirect after permanent delete
   exit();
 }
 
-// Fetch all customers from the customer_restore table
-$productList = $conn->query('SELECT * FROM customer_restore');
+// Fetch all suppliers from the supplier_restore table
+$productList = $conn->query('SELECT * FROM supplier_restore');
 ?>
 
 <?php require_once('../templat/header.php'); ?>
@@ -164,11 +164,11 @@ if ($productList) {
     echo "<td>" . htmlspecialchars($row['email']) . "</td>";
     echo '<td>
                 <!-- Restore Link with FontAwesome Icon -->
-                <a href="cRestore.php?restore_id=' . $row['id'] . '" class="pos_item_btn" style="text-decoration:none; color:green">
+                <a href="restoreSup.php?restore_id=' . $row['id'] . '" class="pos_item_btn" style="text-decoration:none; color:green">
                     <i class="fa fa-refresh"></i> Restore
                 </a>
                 <!-- Permanent Delete Link with FontAwesome Icon -->
-                <a href="cRestore.php?delete_id=' . $row['id'] . '" class="pos_item_btn" style="text-decoration:none; color:red">
+                <a href="restoreSup.php?delete_id=' . $row['id'] . '" class="pos_item_btn" style="text-decoration:none; color:red">
                     <i class="fa fa-trash"></i> Permanent Delete
                 </a>
             </td>';
@@ -178,7 +178,7 @@ if ($productList) {
   echo "</table>";
   echo "</form>";
 } else {
-  echo "Error fetching customer data.";
+  echo "Error fetching supplier data.";
 }
 ?>
 

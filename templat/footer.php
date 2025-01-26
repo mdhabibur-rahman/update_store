@@ -1,14 +1,14 @@
     <!--begin::Footer-->
     <footer class="app-footer" style="border-top: 1px solid #c1afa0;">
-    <div class="container text-center">
-      <div class="d-none d-sm-block mx-auto">
-        <strong>
-          Copyright &copy; 2014-2024&nbsp;
-          <a href="" class="text-decoration-none">GRAB FIRST</a>
-        </strong>
-        All rights reserved.
-        <!--end::Copyright-->
-      </div>
+      <div class="container text-center">
+        <div class="d-none d-sm-block mx-auto">
+          <strong>
+            Copyright &copy; 2014-2024&nbsp;
+            <a href="" class="text-decoration-none">GRAB FIRST</a>
+          </strong>
+          All rights reserved.
+          <!--end::Copyright-->
+        </div>
       </div>
       <div class="container text-center">
         <div class="d-none d-sm-block mx-auto">Anything you want</div>
@@ -85,10 +85,10 @@
       });
     </script>
     <!-- apexcharts -->
-    <script
+    <!-- <script
       src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
       integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"></script> -->
     <!-- ChartJS -->
     <script src="../js/sale_value.js"></script>
     <script

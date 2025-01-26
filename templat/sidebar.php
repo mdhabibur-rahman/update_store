@@ -5,10 +5,7 @@
         <!--begin::Brand Link-->
         <a href="./index.html" class="brand-link">
           <!--begin::Brand Image-->
-          <img
-            src="../assets/img/logo2.jpg"
-            alt="AdminLTE Logo"
-            class="brand-image opacity-75 shadow" style="width: 120px" />
+          <p style="font-size: 40px; color:#333; margin-top:10px"><strong>Astha</strong> <img src="../assets/img/logo2.jpg" width="50px" alt=""></p>
           <!--end::Brand Image-->
           <!--begin::Brand Text-->
 
@@ -34,35 +31,6 @@
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon bi bi-box-seam-fill"></i>
-                <p>
-                  Customers
-                  <i class="nav-arrow bi bi-chevron-right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="viewCustomer.php" class="nav-link">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>All Customers</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="addCustomer.php" class="nav-link">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>Add Customers</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="cRestore.php" class="nav-link">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>Restore Customers</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
                 <i class="nav-icon bi bi-clipboard-fill"></i>
                 <p>
                   Products
@@ -71,21 +39,21 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./layout/unfixed-sidebar.html" class="nav-link">
+                  <a href="viewProducts.php" class="nav-link">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>All Products</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./layout/fixed-sidebar.html" class="nav-link">
+                  <a href="addProducts.php" class="nav-link">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Add Products</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./layout/layout-custom-area.html" class="nav-link">
+                  <a href="viewExpiredVariations.php" class="nav-link">
                     <i class="nav-icon bi bi-circle"></i>
-                    <p>Restore Products</p>
+                    <p>Products Expiry </p>
                   </a>
                 </li>
               </ul>
@@ -199,7 +167,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./tables/simple.html" class="nav-link">
+                  <a href="createSelOr.php" class="nav-link">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Create Sales Order</p>
                   </a>
@@ -274,15 +242,21 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./tables/simple.html" class="nav-link">
+                  <a href="../pages/viewSuppliers.php" class="nav-link">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>All Suppliers</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./tables/simple.html" class="nav-link">
+                  <a href="../pages/addSuppliers.php" class="nav-link">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Add Suppliers</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../pages/restoreSup.php" class="nav-link">
+                    <i class="nav-icon bi bi-circle"></i>
+                    <p>Restore Supplier</p>
                   </a>
                 </li>
               </ul>
