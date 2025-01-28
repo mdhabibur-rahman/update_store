@@ -99,6 +99,7 @@
       src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"
       integrity="sha256-XPpPaZlU8S/HWf7FZLAncLg2SAkP8ScUTII89x9D3lY="
       crossorigin="anonymous"></script>
+    <script src="../js/pos.js"></script>
     </body>
     <!--end::Body-->
 

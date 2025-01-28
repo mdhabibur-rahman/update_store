@@ -14,8 +14,8 @@ $conn = new mysqli($servername, $username, $password, $database);
 function backupDataBeforeDelete($id, $conn)
 {
   // Prepare the backup query string
-  $backupQuery = "INSERT INTO supplier_restore (id, name, phone, email, password) 
-                    SELECT id, name, phone, email, password 
+  $backupQuery = "INSERT INTO supplier_restore (id, name, phone, email, created_at) 
+                    SELECT id, name, phone, email, NOW() 
                     FROM suppliers WHERE id = ?";
 
   // Prepare the statement
@@ -37,8 +37,8 @@ function backupDataBeforeDelete($id, $conn)
 function restoreData($id, $conn)
 {
   // Insert data into suppliers table
-  $restoreQuery = "INSERT INTO suppliers (id, name, phone, email, password) 
-                     SELECT id, name, phone, email, password 
+  $restoreQuery = "INSERT INTO suppliers (id, name, phone, email, created_at) 
+                     SELECT id, name, phone, email, created_at 
                      FROM supplier_restore WHERE id = ?";
 
   if ($stmt = $conn->prepare($restoreQuery)) {
@@ -151,6 +151,7 @@ if ($productList) {
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>Created At</th>
                 <th>Actions</th>
               </tr>";
 
@@ -162,12 +163,11 @@ if ($productList) {
     echo "<td>" . htmlspecialchars($row['name']) . "</td>";
     echo "<td>" . htmlspecialchars($row['phone']) . "</td>";
     echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+    echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
     echo '<td>
-                <!-- Restore Link with FontAwesome Icon -->
                 <a href="restoreSup.php?restore_id=' . $row['id'] . '" class="pos_item_btn" style="text-decoration:none; color:green">
                     <i class="fa fa-refresh"></i> Restore
                 </a>
-                <!-- Permanent Delete Link with FontAwesome Icon -->
                 <a href="restoreSup.php?delete_id=' . $row['id'] . '" class="pos_item_btn" style="text-decoration:none; color:red">
                     <i class="fa fa-trash"></i> Permanent Delete
                 </a>

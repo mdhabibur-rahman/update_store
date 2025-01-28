@@ -1,4 +1,4 @@
-/* General Styles
+/* General Styles */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f8f9fa;
@@ -176,6 +176,9 @@ body {
   font-weight: normal;
   margin: 0;
   text-align: right;
-} */
+}
 
 
+.productResultContainer.card {
+  color: white !important;
+}
