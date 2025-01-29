@@ -255,3 +255,92 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initially display all products when the page loads
   displayAllProducts();
 });
+
+
+
+
+
+
+
+
+document.querySelector('.create_orderBtn').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Gather order details
+  const customerName = document.querySelector('input[name="name"]').value || "N/A";
+  const customerEmail = document.querySelector('input[name="email"]').value || "N/A";
+  const customerPhone = document.querySelector('input[name="phone"]').value || "N/A";
+  const orderItems = document.querySelectorAll('#pos_item_td tbody tr');
+  const totalAmount = document.querySelector('.item_total--value').textContent || "$0.00";
+
+  // Get current date and time
+  const now = new Date();
+  const formattedDateTime = now.toLocaleString(); // Formats the date & time in the user's locale
+
+  // Build the invoice content
+  let invoiceHTML = `
+    <p><strong>Invoice Date & Time:</strong> ${formattedDateTime}</p>
+    <p><strong>Customer Name:</strong> ${customerName}</p>
+    <p><strong>Email:</strong> ${customerEmail}</p>
+    <p><strong>Phone:</strong> ${customerPhone}</p>
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  orderItems.forEach((row, index) => {
+    const columns = row.querySelectorAll('td');
+    invoiceHTML += `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${columns[1].textContent}</td>
+        <td>${columns[2].textContent}</td>
+        <td>${columns[3].textContent}</td>
+        <td>${columns[4].textContent}</td>
+      </tr>
+    `;
+  });
+
+  invoiceHTML += `
+      </tbody>
+    </table>
+    <p><strong>Total:</strong> ${totalAmount}</p>
+    <button id="printInvoice" class="btn btn-primary mt-3">Print Invoice</button>
+  `;
+
+  // Insert the invoice content into the modal
+  document.getElementById('invoiceContent').innerHTML = invoiceHTML;
+
+  // Add print functionality
+  document.getElementById('printInvoice').addEventListener('click', function () {
+    const invoiceContent = document.getElementById('invoiceContent').innerHTML;
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Invoice</title>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        </head>
+        <body>
+          ${invoiceContent}
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+  });
+
+  // Show the modal (requires Bootstrap's JavaScript)
+  const invoiceModal = new bootstrap.Modal(document.getElementById('invoiceModal'));
+  invoiceModal.show();
+});

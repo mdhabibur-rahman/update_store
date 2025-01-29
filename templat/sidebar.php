@@ -5,7 +5,7 @@
         <!--begin::Brand Link-->
         <a href="./index.html" class="brand-link">
           <!--begin::Brand Image-->
-          <p style="font-size: 40px; color:#333; margin-top:10px"><strong>Astha</strong> <img src="../assets/img/logo2.jpg" width="50px" alt=""></p>
+          <p style="font-size: 40px; color:#333; margin-top:10px"><strong>Astha</strong> <img src="../assets/img/logo.jpg" width="50px" alt=""></p>
           <!--end::Brand Image-->
           <!--begin::Brand Text-->
 

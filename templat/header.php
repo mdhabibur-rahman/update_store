@@ -23,11 +23,14 @@
     integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
     crossorigin="anonymous" /> -->
   <link rel="stylesheet" href="../css/pos.css" />
-  <link
+  <!-- Add dompurify library before jsPDF -->
+  <!-- <link rel="stylesheet" href="style.css"> -->
+
+  <!-- <link
     rel="stylesheet"
-    href="../assets/css/index.css"
+    href="../css/index.css"
     integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
-    crossorigin="anonymous" />
+    crossorigin="anonymous" /> -->
   <!--end::Fonts-->
   <!--begin::Third Party Plugin(OverlayScrollbars)-->
   <!-- <link
@@ -54,16 +57,15 @@
   <!--end::Required Plugin(AdminLTE)-->
   <!-- apexcharts -->
   <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
-      integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
-      crossorigin="anonymous"
-    /> -->
-  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
+    integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
+    crossorigin="anonymous" /> -->
+  <!-- <link
     rel="stylesheet"
     href="../css/apexcharts.css"
     integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
-    crossorigin="anonymous" />
+    crossorigin="anonymous" /> -->
   <!-- jsvectormap -->
   <!-- <link
       rel="stylesheet"

@@ -90,7 +90,7 @@
       integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
       crossorigin="anonymous"></script> -->
     <!-- ChartJS -->
-    <script src="../js/sale_value.js"></script>
+    <!-- <script src="../js/sale_value.js"></script> -->
     <script
       src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"
       integrity="sha256-/t1nN2956BT869E6H4V1dnt0X5pAQHPytli+1nTZm2Y="
